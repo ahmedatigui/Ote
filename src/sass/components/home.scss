@@ -1,0 +1,25 @@
+main, p{
+    text-align: center;
+}
+
+main{
+    section{
+        block-size: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+
+        h1{
+            max-inline-size: 15ch;
+        }
+
+        .cta {
+            background-color: $green;
+            border-radius: $border-radius;
+            padding: 1rem 2rem;
+            text-decoration: none;
+        }
+    }
+}

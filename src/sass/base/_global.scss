@@ -2,7 +2,18 @@ body{
     background-color: $white;
 }
 
-.cta {
-    background-color: $green;
-    border-radius: $border-radius;
+p, a{
+    color: $black;
+}
+p{
+    max-inline-size: 65ch;
+}
+
+nav{
+    block-size: 10vh;
+}
+
+.logo{
+    font-size: 2.25rem;
+    font-weight: 500;
 }

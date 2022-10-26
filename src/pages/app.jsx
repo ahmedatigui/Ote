@@ -1,8 +1,11 @@
-import './sass/main.scss'
+
 
 function App() {
 
-  return;
+
+  return(
+    <p>App</p>
+  )
 }
 
 export default App
