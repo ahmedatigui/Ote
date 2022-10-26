@@ -1,0 +1,85 @@
+.app {
+  .upper-nav {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    align-items: center;
+
+    .logo {
+      block-size: 100%;
+      background-color: $green;
+      display: flex;
+      place-content: center;
+    }
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+
+      li {
+        select {
+          width: 7rem;
+          padding: 0.5rem 0.6rem;
+          border-radius: 10px;
+          border: 0.1px solid #090c02;
+          background-color: transparent;
+        }
+        svg {
+          transform: translateX(1px);
+        }
+      }
+    }
+  }
+  section {
+    display: grid;
+    grid-template-columns: 4rem 1.5fr 1fr;
+
+    block-size: 89vh;
+
+    nav {
+      padding-block-start: 2rem;
+      ul {
+        block-size: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        li:last-child {
+          justify-self: flex-end;
+        }
+      }
+    }
+
+    div {
+      background-color: #fff;
+      border: 1px solid $black;
+      border-bottom: none;
+
+      &:first-of-type {
+        margin-inline-end: 0.2rem;
+      }
+    }
+  }
+}
+
+button {
+  display: flex;
+  place-items: center;
+  padding: 0.4rem;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid $black;
+    border-radius: $border-radius;
+  }
+}
+
+.app {
+  nav {
+    background-color: #fff;
+  }
+}

@@ -1,19 +1,30 @@
-body{
-    background-color: $white;
+body {
+  background-color: $white;
 }
 
-p, a{
-    color: $black;
+p,
+a {
+  color: $black;
 }
-p{
-    max-inline-size: 65ch;
-}
-
-nav{
-    block-size: 10vh;
+a {
+  text-decoration: none;
 }
 
-.logo{
-    font-size: 2.25rem;
-    font-weight: 500;
+p {
+  max-inline-size: 65ch;
+}
+
+.logo {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
 }

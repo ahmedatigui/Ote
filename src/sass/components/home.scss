@@ -1,25 +1,30 @@
-main, p{
-    text-align: center;
+.home,
+p {
+  text-align: center;
 }
 
-main{
-    section{
-        block-size: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2.5rem;
+.home {
+  nav {
+    block-size: 10vh;
+  }
 
-        h1{
-            max-inline-size: 15ch;
-        }
+  section {
+    block-size: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
 
-        .cta {
-            background-color: $green;
-            border-radius: $border-radius;
-            padding: 1rem 2rem;
-            text-decoration: none;
-        }
+    h1 {
+      max-inline-size: 15ch;
     }
+
+    .cta {
+      background-color: $green;
+      border-radius: $border-radius;
+      padding: 1rem 2rem;
+      text-decoration: none;
+    }
+  }
 }
