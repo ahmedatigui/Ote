@@ -3,12 +3,14 @@
     display: grid;
     grid-template-columns: 4rem 1fr;
     align-items: center;
+    border-block-end: 1px solid $black;
 
     .logo {
       block-size: 100%;
       background-color: $green;
       display: flex;
       place-content: center;
+      border-inline-end: 1px solid $black;
     }
 
     ul {
@@ -35,10 +37,11 @@
     display: grid;
     grid-template-columns: 4rem 1.5fr 1fr;
 
-    block-size: 89vh;
+    block-size: min(89vh, 100vh);
 
     nav {
       padding-block-start: 2rem;
+      border-inline-end: 1px solid $black;
       ul {
         block-size: 100%;
         display: flex;
@@ -53,9 +56,10 @@
     }
 
     div {
-      background-color: #fff;
-      border: 1px solid $black;
+      // background-color: #fff;
+      // border: 1px solid $black;
       border-bottom: none;
+      overflow: scroll;
 
       &:first-of-type {
         margin-inline-end: 0.2rem;
@@ -84,6 +88,6 @@ button {
   }
 }
 
-.editor{
+.editor {
   block-size: 100%;
 }

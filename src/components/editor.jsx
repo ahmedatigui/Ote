@@ -1,8 +1,9 @@
 import CodeMirror from "@uiw/react-codemirror";
-import { githubLight } from "@uiw/codemirror-themes-all";
+//import { androidstudio, abcdef, atomone, eclipse, xcode, sublime ,bespin ,duotoneDark, duotoneLight ,githubLight, okaidia, dracula, darcula, xcodeDark, xcodeLight } from "@uiw/codemirror-themes-all";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
 import { python } from "@codemirror/lang-python";
+import { githubLight } from "@uiw/codemirror-themes-all";
 
 const InputEditor = ({ lang }) => {
   const js = "// JS Code goes here";

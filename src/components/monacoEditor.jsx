@@ -1,17 +1,16 @@
-import MonacoEditor from "@uiw/react-monacoeditor"
+import MonacoEditor from "@uiw/react-monacoeditor";
 
-const MoEditor = ({lang}) => {
+const MoEditor = ({ lang }) => {
+  console.log(lang);
+  return (
+    <MonacoEditor
+      language={lang}
+      defaultValue="Code Goes Here"
+      options={{
+        theme: "vs-light",
+      }}
+    />
+  );
+};
 
-    console.log(lang)
-    return (
-        <MonacoEditor
-            language={lang}
-            placeholder="Code Goes Here"
-            options={{
-                theme: 'vs-dark'
-            }}
-        />
-    )
-}
-
-export default MoEditor
+export default MoEditor;

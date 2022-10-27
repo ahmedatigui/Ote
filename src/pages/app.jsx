@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import MoEditor from "../components/monacoEditor";
+import InputEditor from "../components/editor";
+// import MoEditor from "../components/monacoEditor";
 
 function App() {
   const [lang, setLang] = useState("cpp");
@@ -260,7 +261,7 @@ function App() {
           </ul>
         </nav>
         <div className="code-input">
-          <MoEditor className="code-input" lang={lang} />
+          <InputEditor className="code-input" lang={lang} />
         </div>
         <div className="code-output">Output is here</div>
       </section>
