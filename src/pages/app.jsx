@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+// Custom Hooks
+import fetchCompiler from "../hooks/useCompiler";
+
+// Components
 import InputEditor from "../components/editor";
 
 function App() {
@@ -7,7 +12,10 @@ function App() {
   const [codeValue, setCodeValue] = useState("");
 
   const handleChange = (e) => setLang(e.target.value);
-  const handleSubmit = () => console.log(codeValue, typeof codeValue);
+  const handleSubmit = () => {
+    console.log(codeValue,lang)
+    fetchCompiler(codeValue, lang)
+  };
 
   return (
     <main className="app">
@@ -267,6 +275,7 @@ function App() {
             className="code-input"
             lang={lang}
             setCodeValue={setCodeValue}
+            codeValue={codeValue}
           />
         </div>
         <div className="code-output">Output is here</div>

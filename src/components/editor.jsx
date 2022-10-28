@@ -1,12 +1,15 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+
+// CodeMirror Editor
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
 import { python } from "@codemirror/lang-python";
 import { githubLight } from "@uiw/codemirror-themes-all";
-import { useState } from "react";
 
-const InputEditor = ({ lang, setCodeValue }) => {
+
+const InputEditor = ({ lang, setCodeValue, codeValue }) => {
   const [proLang, setProLang] = useState({ language: cpp(), value: "cpp" });
   const [initialValue, setInitialValue] = useState(
     "// Your C++ code goes here"
@@ -27,6 +30,7 @@ const InputEditor = ({ lang, setCodeValue }) => {
     }
   }, [lang]);
 
+  
   const handleChange = useCallback((value, viewUpdate) => {
     setCodeValue(value);
   }, []);
