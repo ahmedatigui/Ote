@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import InputEditor from "../components/editor";
-// import MoEditor from "../components/monacoEditor";
 
 function App() {
   const [lang, setLang] = useState("cpp");
+  const [codeValue, setCodeValue] = useState("");
 
   const handleChange = (e) => setLang(e.target.value);
+  const handleSubmit = () => console.log(codeValue, typeof codeValue);
+
   return (
     <main className="app">
       <nav className="upper-nav">
@@ -21,7 +23,7 @@ function App() {
               <option value="javascript">Javascript</option>
             </select>
           </li>
-          <li>
+          <li onClick={handleSubmit}>
             <button>
               <svg
                 width="24"
@@ -261,7 +263,11 @@ function App() {
           </ul>
         </nav>
         <div className="code-input">
-          <InputEditor className="code-input" lang={lang} />
+          <InputEditor
+            className="code-input"
+            lang={lang}
+            setCodeValue={setCodeValue}
+          />
         </div>
         <div className="code-output">Output is here</div>
       </section>

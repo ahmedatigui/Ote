@@ -1,20 +1,43 @@
+import { useCallback, useEffect } from "react";
 import CodeMirror from "@uiw/react-codemirror";
-//import { androidstudio, abcdef, atomone, eclipse, xcode, sublime ,bespin ,duotoneDark, duotoneLight ,githubLight, okaidia, dracula, darcula, xcodeDark, xcodeLight } from "@uiw/codemirror-themes-all";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
 import { python } from "@codemirror/lang-python";
 import { githubLight } from "@uiw/codemirror-themes-all";
+import { useState } from "react";
 
-const InputEditor = ({ lang }) => {
-  const js = "// JS Code goes here";
-  console.log("lang", lang);
+const InputEditor = ({ lang, setCodeValue }) => {
+  const [proLang, setProLang] = useState({ language: cpp(), value: "cpp" });
+  const [initialValue, setInitialValue] = useState(
+    "// Your C++ code goes here"
+  );
+
+  useEffect(() => {
+    if (lang !== proLang.value) {
+      setProLang({
+        language:
+          lang === "cpp" ? cpp() : lang === "python" ? python() : javascript(),
+        value: lang,
+      });
+      setInitialValue(
+        `${lang === "python" ? "#" : "//"} Your ${
+          lang === "cpp" ? "C++" : lang === "python" ? "Python" : "Javascript"
+        } code goes here`
+      );
+    }
+  }, [lang]);
+
+  const handleChange = useCallback((value, viewUpdate) => {
+    setCodeValue(value);
+  }, []);
+
   return (
     <CodeMirror
-      placeholder={js}
-      extensions={[javascript()]}
+      placeholder={initialValue}
+      extensions={[proLang.language]}
       height="89vh"
       theme={githubLight}
-      lineBreak={true}
+      onChange={handleChange}
     />
   );
 };
