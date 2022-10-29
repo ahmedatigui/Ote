@@ -10,11 +10,18 @@ import InputEditor from "../components/editor";
 function App() {
   const [lang, setLang] = useState("cpp");
   const [codeValue, setCodeValue] = useState("");
+  const [output, setOutput] = useState("Your input here")
 
   const handleChange = (e) => setLang(e.target.value);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(codeValue,lang)
-    fetchCompiler(codeValue, lang)
+    const res = await fetchCompiler(codeValue, lang)
+
+    if(res.compResult === "S"){
+      setOutput(res.output)
+    }else if(res.compResult === "F"){
+      setOutput(res.cmpError)
+    }
   };
 
   return (
@@ -278,7 +285,7 @@ function App() {
             codeValue={codeValue}
           />
         </div>
-        <div className="code-output">Output is here</div>
+        <div className="code-output">{output}</div>
       </section>
     </main>
   );
