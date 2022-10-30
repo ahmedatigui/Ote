@@ -2,26 +2,85 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Custom Hooks
-import fetchCompiler from "../hooks/useCompiler";
+import useCompiler from "../hooks/useCompiler";
 
 // Components
 import InputEditor from "../components/editor";
 
+const SUMBMISSION_URL = "https://codejudge.geeksforgeeks.org/submit-request";
+const OUTPUT_URL = "https://codejudge.geeksforgeeks.org/get-status/";
+
+const ls = {
+  cpp: "cpp14",
+  python: "python3",
+  javascript: "js",
+};
+
+
 function App() {
-  const [lang, setLang] = useState("cpp");
+  const [language, setLanguage] = useState("cpp");
   const [codeValue, setCodeValue] = useState("");
-  const [output, setOutput] = useState("Your input here")
+  const [loading, setLoading] = useState(null);
+  const [data, setData] = useState("Your input/output here");
 
-  const handleChange = (e) => setLang(e.target.value);
-  const handleSubmit = async () => {
-    console.log(codeValue,lang)
-    const res = await fetchCompiler(codeValue, lang)
+  const handleChange = (e) => setLanguage(e.target.value);
+  const handleSubmit = () => {
+    console.log(codeValue, language);
 
-    if(res.compResult === "S"){
-      setOutput(res.output)
-    }else if(res.compResult === "F"){
-      setOutput(res.cmpError)
-    }
+    let gData = null;
+    const bd = {
+      language: ls[language],
+      code: codeValue,
+      input: "",
+      save: false,
+    };
+    setLoading(true);
+
+    fetch(SUMBMISSION_URL, {
+      method: "POST",
+      body: JSON.stringify(bd),
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        let t1 = setTimeout(() => {
+          fetch(`${OUTPUT_URL}${data.id}`, {
+            headers: { "Sec-Fetch-Site": "same-site" },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              setLoading(false);
+
+              if(data.status === "in-queue"){
+                setData(data.status);
+                console.log(data.status);
+              }else if (data.compResult === "S" && data.errorCode === "") {
+                setData(data.output);
+                console.log(data.output);
+              }else if (data.status === "SUCCESS" && data.errorCode === "RTE") {
+                setData(data.rntError);
+                console.log(data.rntError);
+              }else if (data.status === "SUCCESS" && data.errorCode === "CE") {
+                setData(data.cmpError);
+                console.log(data.cmpError);
+              }
+            })
+            .catch((err) => {
+              console.warn(err);
+              setData(err);
+              setLoading(false);
+            });
+        }, 3000);
+      })
+      .catch((err) => {
+        console.warn(err);
+        setData(err);
+        setLoading(false);
+      });
+    console.log(data);
   };
 
   return (
@@ -32,7 +91,7 @@ function App() {
         </Link>
         <ul>
           <li>
-            <select value={lang} onChange={handleChange}>
+            <select value={language} onChange={handleChange}>
               <option value="cpp">C++</option>
               <option value="python">Python</option>
               <option value="javascript">Javascript</option>
@@ -280,12 +339,12 @@ function App() {
         <div className="code-input">
           <InputEditor
             className="code-input"
-            lang={lang}
+            lang={language}
             setCodeValue={setCodeValue}
             codeValue={codeValue}
           />
         </div>
-        <div className="code-output">{output}</div>
+        <div className="code-output">{loading ? "Loading..." : data}</div>
       </section>
     </main>
   );
