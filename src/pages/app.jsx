@@ -6,7 +6,6 @@ import useCompiler from "../hooks/useCompiler";
 
 // Components
 import InputEditor from "../components/editor";
-import { useCallback } from "react";
 
 function App() {
   const [language, setLanguage] = useState("cpp");

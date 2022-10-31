@@ -33,7 +33,6 @@ const InputEditor = ({ lang, setCodeValue }) => {
 
   const handleChange = useCallback((value, viewUpdate) => {
     setCodeValue(value);
-    console.log("I Changed", value)
   }, []);
 
   return (

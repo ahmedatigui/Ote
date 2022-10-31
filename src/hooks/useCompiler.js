@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCallback } from "react";
 
 const SUMBMISSION_URL = "https://codejudge.geeksforgeeks.org/submit-request";
 const OUTPUT_URL = "https://codejudge.geeksforgeeks.org/get-status/";
@@ -29,34 +28,27 @@ const useCompiler = (codeValue, language, setLoading, setData) => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
 
               if (data.status === "in-queue") {
                 setData(data.status);
-                console.log(data.status);
                 getIt(d);
               } else if (data.status === "SUCCESS" && data.errorCode === "") {
                 setLoading(false);
                 setData(data.output);
-                console.log(data.output);
               } else if (
                 data.status === "SUCCESS" &&
                 data.errorCode === "RTE"
               ) {
                 setLoading(false);
                 setData(data.rntError);
-                console.log(data.rntError);
               } else if (data.status === "SUCCESS" && data.errorCode === "CE") {
                 setLoading(false);
                 setData(data.cmpError);
-                console.log(data.cmpError);
               }
             }),
         1000
       );
 
-    console.log(codeValue, language);
-    console.log(codeValue.length);
 
     const bd = {
       language: ls[language],
