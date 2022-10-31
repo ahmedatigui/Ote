@@ -16,6 +16,13 @@ const ls = {
   javascript: "js",
 };
 
+const getOutput = (id) => (
+  fetch(`${OUTPUT_URL}${id}`, {
+    headers: { "Sec-Fetch-Site": "same-site" },
+  })
+    .then((res) => res.json())
+)
+
 
 function App() {
   const [language, setLanguage] = useState("cpp");
@@ -23,9 +30,36 @@ function App() {
   const [loading, setLoading] = useState(null);
   const [data, setData] = useState("Your input/output here");
 
+  const getIt = (d) =>  setTimeout(() => fetch(`${OUTPUT_URL}${d.id}`, {
+    headers: { "Sec-Fetch-Site": "same-site" },
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+    setLoading(false);
+
+    if(data.status === "in-queue"){
+      setData(data.status);
+      console.log(data.status);
+      getIt(d)
+    }else if (data.compResult === "S" && data.errorCode === "") {
+      setData(data.output);
+      console.log(data.output);
+    }else if (data.status === "SUCCESS" && data.errorCode === "RTE") {
+      setData(data.rntError);
+      console.log(data.rntError);
+    }else if (data.status === "SUCCESS" && data.errorCode === "CE") {
+      setData(data.cmpError);
+      console.log(data.cmpError);
+    }
+  })
+  , 3000)
+
+
   const handleChange = (e) => setLanguage(e.target.value);
   const handleSubmit = () => {
     console.log(codeValue, language);
+    console.log(codeValue.length);
 
     let gData = null;
     const bd = {
@@ -45,35 +79,9 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        let t1 = setTimeout(() => {
-          fetch(`${OUTPUT_URL}${data.id}`, {
-            headers: { "Sec-Fetch-Site": "same-site" },
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              setLoading(false);
 
-              if(data.status === "in-queue"){
-                setData(data.status);
-                console.log(data.status);
-              }else if (data.compResult === "S" && data.errorCode === "") {
-                setData(data.output);
-                console.log(data.output);
-              }else if (data.status === "SUCCESS" && data.errorCode === "RTE") {
-                setData(data.rntError);
-                console.log(data.rntError);
-              }else if (data.status === "SUCCESS" && data.errorCode === "CE") {
-                setData(data.cmpError);
-                console.log(data.cmpError);
-              }
-            })
-            .catch((err) => {
-              console.warn(err);
-              setData(err);
-              setLoading(false);
-            });
-        }, 3000);
+            getIt(data)
+          
       })
       .catch((err) => {
         console.warn(err);
