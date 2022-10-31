@@ -9,7 +9,7 @@ import { python } from "@codemirror/lang-python";
 import { githubLight } from "@uiw/codemirror-themes-all";
 
 
-const InputEditor = ({ lang, setCodeValue, codeValue }) => {
+const InputEditor = ({ lang, setCodeValue }) => {
   const [proLang, setProLang] = useState({ language: cpp(), value: "cpp" });
   const [initialValue, setInitialValue] = useState(
     "// Your C++ code goes here"
@@ -30,9 +30,10 @@ const InputEditor = ({ lang, setCodeValue, codeValue }) => {
     }
   }, [lang]);
 
-  
+
   const handleChange = useCallback((value, viewUpdate) => {
     setCodeValue(value);
+    console.log("I Changed", value)
   }, []);
 
   return (
