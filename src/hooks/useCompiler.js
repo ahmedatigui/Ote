@@ -3,64 +3,56 @@ import { useState } from "react";
 const SUMBMISSION_URL = "https://codejudge.geeksforgeeks.org/submit-request";
 const OUTPUT_URL = "https://codejudge.geeksforgeeks.org/get-status/";
 
-const ls = {
+const languages = {
   cpp: "cpp14",
   python: "python3",
   javascript: "js",
 };
 
-const useCompiler = (codeValue, language, setLoading, setData) => {
-  const [preValue, setValue] = useState({ code: null, lang: null });
+const useCompiler = ([ codeValue, language, inputValue, setOutputValue ]) => {
+  const [preValue, setPreValue] = useState({ code: null, lang: null, input: null });
   const fetchData = () => {
     // prevent running the same code and language
     if (
       codeValue === "" ||
-      (codeValue.trim() === preValue.code && preValue.lang === language)
+      (codeValue.trim() === preValue.code && preValue.lang === language && preValue.input === inputValue)
     )
       return;
-    else setValue({ code: codeValue.trim(), lang: language });
+    else setPreValue({ code: codeValue.trim(), lang: language });
 
     const getIt = (d) =>
-      setTimeout(
-        () =>
-          fetch(`${OUTPUT_URL}${d.id}`, {
-            headers: { "Sec-Fetch-Site": "same-site" },
-          })
-            .then((res) => res.json())
-            .then((data) => {
+      setTimeout(async () => {
+        setOutputValue("Loading the Output");
+        return fetch(`${OUTPUT_URL}${d.id}`, {
+          headers: { "Sec-Fetch-Site": "same-site" },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.status === "in-queue") {
+              setOutputValue(data.status);
+              getIt(d);
+            } else if (data.status === "SUCCESS" && data.errorCode === "") {
+              setOutputValue(data.output);
+            } else if (data.status === "SUCCESS" && data.errorCode === "RTE") {
+              setOutputValue(data.rntError);
+            } else if (data.status === "SUCCESS" && data.errorCode === "CE") {
+              setOutputValue(data.cmpError);
+            }
+          });
+      }, 1000);
 
-              if (data.status === "in-queue") {
-                setData(data.status);
-                getIt(d);
-              } else if (data.status === "SUCCESS" && data.errorCode === "") {
-                setLoading(false);
-                setData(data.output);
-              } else if (
-                data.status === "SUCCESS" &&
-                data.errorCode === "RTE"
-              ) {
-                setLoading(false);
-                setData(data.rntError);
-              } else if (data.status === "SUCCESS" && data.errorCode === "CE") {
-                setLoading(false);
-                setData(data.cmpError);
-              }
-            }),
-        1000
-      );
-
-
-    const bd = {
-      language: ls[language],
+    const body = {
+      language: languages[language],
       code: codeValue,
-      input: "",
+      input: inputValue,
       save: false,
     };
-    setLoading(true);
+
+    setOutputValue("Sending Code");
 
     fetch(SUMBMISSION_URL, {
       method: "POST",
-      body: JSON.stringify(bd),
+      body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
@@ -71,8 +63,7 @@ const useCompiler = (codeValue, language, setLoading, setData) => {
       })
       .catch((err) => {
         console.warn(err);
-        setData(err);
-        setLoading(false);
+        setOutputValue(err);
       });
   };
   return [fetchData];

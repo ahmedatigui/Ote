@@ -5,17 +5,26 @@ import { Link } from "react-router-dom";
 import useCompiler from "../hooks/useCompiler";
 
 // Components
-import InputEditor from "../components/editor";
+import { CodeEditor, InputEditor, OutputEditor } from "../components/editor";
 
 function App() {
+  // Code editor states
   const [language, setLanguage] = useState("cpp");
   const [codeValue, setCodeValue] = useState("");
-  const [loading, setLoading] = useState(null);
-  const [data, setData] = useState("Your input/output here");
-  const [fetchData] = useCompiler(codeValue, language, setLoading, setData);
+  
+  // Input editor states
+  const [inputValue, setInputValue] = useState("");
+
+  // Output editor states
+  const [outputValue, setOutputValue] = useState("Your out output will be here when compiled")
+
+  // Custom hooks
+  const [fetchData] = useCompiler([codeValue, language, inputValue, setOutputValue]);
+
 
   const handleChange = (e) => setLanguage(e.target.value);
   const handleSubmit = () => fetchData();
+
   return (
     <main className="app">
       <nav className="upper-nav">
@@ -270,14 +279,16 @@ function App() {
           </ul>
         </nav>
         <div className="code-input">
-          <InputEditor
+          <CodeEditor
             className="code-input"
             lang={language}
             setCodeValue={setCodeValue}
-            codeValue={codeValue}
           />
         </div>
-        <div className="code-output">{loading ? "Loading..." : data}</div>
+        <div className="code-output">
+          <InputEditor setInputValue={setInputValue} />
+          <OutputEditor outputValue={outputValue} />
+        </div>
       </section>
     </main>
   );
