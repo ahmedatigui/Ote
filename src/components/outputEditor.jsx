@@ -1,13 +1,13 @@
 // CodeMirror Extensions
 import CodeMirror from "@uiw/react-codemirror";
-import { githubLight } from "@uiw/codemirror-themes-all";
+import { githubDark, githubLight } from "@uiw/codemirror-themes-all";
 
-const OutputEditor = ({ outputValue }) => {
+const OutputEditor = ({ outputValue, darkTheme }) => {
   return (
     <CodeMirror
       value={outputValue}
       height="60vh"
-      theme={githubLight}
+      theme={darkTheme ? githubDark : githubLight}
       readOnly={true}
       basicSetup={{
         foldGutter: false,
@@ -19,4 +19,4 @@ const OutputEditor = ({ outputValue }) => {
   );
 };
 
-export default OutputEditor
+export default OutputEditor;

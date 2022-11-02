@@ -2,9 +2,9 @@ import { useCallback } from "react";
 
 // CodeMirror Extensions
 import CodeMirror from "@uiw/react-codemirror";
-import { githubLight } from "@uiw/codemirror-themes-all";
+import { githubLight, githubDark } from "@uiw/codemirror-themes-all";
 
-const InputEditor = ({ setInputValue }) => {
+const InputEditor = ({ setInputValue, darkTheme }) => {
   const initialValue = "// Your Input goes here";
 
   const handleChange = useCallback((value, viewUpdate) => {
@@ -15,7 +15,7 @@ const InputEditor = ({ setInputValue }) => {
     <CodeMirror
       placeholder={initialValue}
       height="29vh"
-      theme={githubLight}
+      theme={darkTheme ? githubDark : githubLight}
       onChange={handleChange}
       basicSetup={{
         foldGutter: false,
@@ -24,4 +24,4 @@ const InputEditor = ({ setInputValue }) => {
   );
 };
 
-export default InputEditor
+export default InputEditor;

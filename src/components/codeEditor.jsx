@@ -5,9 +5,9 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
 import { python } from "@codemirror/lang-python";
-import { githubLight } from "@uiw/codemirror-themes-all";
+import { githubLight, githubDark } from "@uiw/codemirror-themes-all";
 
-const CodeEditor = ({ lang, setCodeValue }) => {
+const CodeEditor = ({ lang, setCodeValue, darkTheme }) => {
   const [proLang, setProLang] = useState({ language: cpp(), value: "cpp" });
   const [initialValue, setInitialValue] = useState(
     "// Your C++ code goes here"
@@ -38,11 +38,10 @@ const CodeEditor = ({ lang, setCodeValue }) => {
       placeholder={initialValue}
       extensions={[proLang.language]}
       height="89vh"
-      theme={githubLight}
+      theme={darkTheme ? githubDark : githubLight}
       onChange={handleChange}
     />
   );
 };
 
-
-export default CodeEditor
+export default CodeEditor;

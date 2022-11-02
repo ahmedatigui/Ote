@@ -19,8 +19,11 @@ function App() {
 
   // Output editor states
   const [outputValue, setOutputValue] = useState(
-    "Your out output will be here when compiled"
+    "Your out output will be here when compiled\n\nNOTE:\nIf your code takes more than 10s to compile, your will get a time out error.\n"
   );
+
+  // theme state
+  const [darkTheme, setDarkTheme] = useState(false);
 
   // Custom hooks
   const [fetchData] = useCompiler([
@@ -40,15 +43,24 @@ function App() {
           <span>o;</span>
         </Link>
         <ul>
-          <li>
+          <li title="Select programming language">
             <select value={language} onChange={handleChange}>
-              <option value="cpp">C++</option>
-              <option value="python">Python</option>
-              <option value="javascript">Javascript</option>
+              <option title="Cplusplus programming language" value="cpp">
+                C++
+              </option>
+              <option title="Python programming language" value="python">
+                Python
+              </option>
+              <option
+                title="Javascript programming language"
+                value="javascript"
+              >
+                Javascript
+              </option>
             </select>
           </li>
           <li onClick={handleSubmit}>
-            <button>
+            <button title="Run">
               <svg
                 width="20"
                 height="20"
@@ -183,7 +195,7 @@ function App() {
                 </svg>
               </button>
             </li> */}
-            <li>
+            <li title="Save">
               <button>
                 <svg
                   width="24"
@@ -216,8 +228,8 @@ function App() {
                 </svg>
               </button>
             </li>
-            <li>
-              <button>
+            <li title="Toggle theme">
+              <button onClick={() => setDarkTheme(!darkTheme)}>
                 <svg
                   width="24"
                   height="24"
@@ -298,11 +310,12 @@ function App() {
             className="code-input"
             lang={language}
             setCodeValue={setCodeValue}
+            darkTheme={darkTheme}
           />
         </div>
         <div className="code-output">
-          <InputEditor setInputValue={setInputValue} />
-          <OutputEditor outputValue={outputValue} />
+          <InputEditor setInputValue={setInputValue} darkTheme={darkTheme} />
+          <OutputEditor outputValue={outputValue} darkTheme={darkTheme} />
         </div>
       </section>
     </main>

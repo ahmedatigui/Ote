@@ -3,14 +3,14 @@
     display: grid;
     grid-template-columns: 4rem 1fr;
     align-items: center;
-    border-block-end: .5px solid $gray;
+    border-block-end: 0.5px solid $gray;
 
     .logo {
       block-size: 100%;
       background-color: $green;
       display: flex;
       place-content: center;
-      border-inline-end: .5px solid $gray;
+      border-inline-end: 0.5px solid $gray;
     }
 
     ul {
@@ -42,7 +42,7 @@
 
     nav {
       padding-block-start: 2rem;
-      border-inline-end: .5px solid $gray;
+      border-inline-end: 0.5px solid $gray;
       ul {
         block-size: 100%;
         display: flex;
@@ -76,7 +76,7 @@ button {
 
   background-color: transparent;
   // border: 1px solid transparent;
-  border: .5px solid $gray;
+  border: 0.5px solid $gray;
   border-radius: $icon-border-radius;
 
   &:hover {
