@@ -42,12 +42,10 @@ function App() {
     if (data === null) return;
     setLanguage(data.language);
     setCodeValue(data.code);
-    setInputValue(data.input);
   };
   const handleChange = (e) => setLanguage(e.target.value);
   const handleSubmit = () => fetchData();
-  const handleSave = () =>
-    save({ language, code: codeValue, input: inputValue });
+  const handleSave = () => save({ language, code: codeValue });
 
   return (
     <main className="app">
