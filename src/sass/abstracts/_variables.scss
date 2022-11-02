@@ -4,6 +4,9 @@ $layout-breapoint-small: 480px !default;
 // Colors
 $white: #E6EED6 !default;
 $black: #090C02 !default;
+$light-black: #565656 !default;
+// $gray: #ABACA7 !default;
+$gray: #DFDFDF !default;
 $green: #B3FF00 !default;
 $blue: #2081C3 !default;
 
@@ -16,5 +19,6 @@ $font-size-sm: 0.75rem !default; // 12px
 
 // Misc
 $border-radius: 10px !default;
+$icon-border-radius: 16px !default;
 $icons-size: 1.5rem !default;
 $icons-container-size: 3rem !default;

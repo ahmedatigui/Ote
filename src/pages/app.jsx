@@ -5,22 +5,30 @@ import { Link } from "react-router-dom";
 import useCompiler from "../hooks/useCompiler";
 
 // Components
-import { CodeEditor, InputEditor, OutputEditor } from "../components/editor";
+import CodeEditor from "../components/codeEditor";
+import InputEditor from "../components/inputEditor";
+import OutputEditor from "../components/outputEditor";
 
 function App() {
   // Code editor states
   const [language, setLanguage] = useState("cpp");
   const [codeValue, setCodeValue] = useState("");
-  
+
   // Input editor states
   const [inputValue, setInputValue] = useState("");
 
   // Output editor states
-  const [outputValue, setOutputValue] = useState("Your out output will be here when compiled")
+  const [outputValue, setOutputValue] = useState(
+    "Your out output will be here when compiled"
+  );
 
   // Custom hooks
-  const [fetchData] = useCompiler([codeValue, language, inputValue, setOutputValue]);
-
+  const [fetchData] = useCompiler([
+    codeValue,
+    language,
+    inputValue,
+    setOutputValue,
+  ]);
 
   const handleChange = (e) => setLanguage(e.target.value);
   const handleSubmit = () => fetchData();
@@ -42,19 +50,26 @@ function App() {
           <li onClick={handleSubmit}>
             <button>
               <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M18.1402 10.82L7.08014 5.15C6.20014 4.7 5.14014 5.33999 5.14014 6.32999V17.67C5.14014 18.66 6.19014 19.31 7.08014 18.85L18.1402 13.18C19.1002 12.69 19.1002 11.31 18.1402 10.82Z"
-                  stroke="black"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <g clipPath="url(#clip0_42_1884)">
+                  <path
+                    d="M3.33325 10V5.28333C3.33325 3.34999 5.33325 2.125 6.97492 3.05L11.3499 5.50833L15.3833 7.76667C17.0999 8.73334 17.0999 11.275 15.3833 12.2417L11.3499 14.5L6.97492 16.9583C5.33325 17.8833 3.33325 16.65 3.33325 14.725V10.0083V10Z"
+                    stroke="#565656"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_42_1884">
+                    <rect width="20" height="20" fill="white" />
+                  </clipPath>
+                </defs>
               </svg>
             </button>
           </li>
@@ -63,7 +78,7 @@ function App() {
       <section>
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <button>
                 <svg
                   width="24"
@@ -167,7 +182,7 @@ function App() {
                   />
                 </svg>
               </button>
-            </li>
+            </li> */}
             <li>
               <button>
                 <svg

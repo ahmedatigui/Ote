@@ -29,3 +29,9 @@ li {
   list-style: none;
   padding: 0;
 }
+
+
+svg, svg *{
+  // fill: $light-black;
+  stroke: $light-black;
+}

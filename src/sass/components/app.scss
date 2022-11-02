@@ -3,14 +3,14 @@
     display: grid;
     grid-template-columns: 4rem 1fr;
     align-items: center;
-    border-block-end: 1px solid $black;
+    border-block-end: .5px solid $gray;
 
     .logo {
       block-size: 100%;
       background-color: $green;
       display: flex;
       place-content: center;
-      border-inline-end: 1px solid $black;
+      border-inline-end: .5px solid $gray;
     }
 
     ul {
@@ -23,9 +23,10 @@
         select {
           width: 7rem;
           padding: 0.5rem 0.6rem;
-          border-radius: 10px;
-          border: 0.1px solid #090c02;
+          border-radius: $border-radius;
+          border: 0.1px solid $gray;
           background-color: transparent;
+          color: $light-black;
         }
         svg {
           transform: translateX(1px);
@@ -41,7 +42,7 @@
 
     nav {
       padding-block-start: 2rem;
-      border-inline-end: 1px solid $black;
+      border-inline-end: .5px solid $gray;
       ul {
         block-size: 100%;
         display: flex;
@@ -74,11 +75,12 @@ button {
   padding: 0.4rem;
 
   background-color: transparent;
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
+  border: .5px solid $gray;
+  border-radius: $icon-border-radius;
 
   &:hover {
-    border: 1px solid $black;
-    border-radius: $border-radius;
+    background-color: $gray;
   }
 }
 
