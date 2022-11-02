@@ -7,7 +7,7 @@ import { cpp } from "@codemirror/lang-cpp";
 import { python } from "@codemirror/lang-python";
 import { githubLight, githubDark } from "@uiw/codemirror-themes-all";
 
-const CodeEditor = ({ lang, setCodeValue, darkTheme }) => {
+const CodeEditor = ({ lang, setCodeValue, codeValue, darkTheme }) => {
   const [proLang, setProLang] = useState({ language: cpp(), value: "cpp" });
   const [initialValue, setInitialValue] = useState(
     "// Your C++ code goes here"
@@ -35,7 +35,7 @@ const CodeEditor = ({ lang, setCodeValue, darkTheme }) => {
 
   return (
     <CodeMirror
-      placeholder={initialValue}
+      value={codeValue ? codeValue : initialValue}
       extensions={[proLang.language]}
       height="89vh"
       theme={darkTheme ? githubDark : githubLight}

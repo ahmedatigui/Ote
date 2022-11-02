@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 // Custom Hooks
 import useCompiler from "../hooks/useCompiler";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 // Components
 import CodeEditor from "../components/codeEditor";
@@ -33,8 +34,20 @@ function App() {
     setOutputValue,
   ]);
 
+  const [save, getLastSaved] = useLocalStorage();
+
+  // Event functions
+  const getLast = () => {
+    const data = getLastSaved();
+    if (data === null) return;
+    setLanguage(data.language);
+    setCodeValue(data.code);
+    setInputValue(data.input);
+  };
   const handleChange = (e) => setLanguage(e.target.value);
   const handleSubmit = () => fetchData();
+  const handleSave = () =>
+    save({ language, code: codeValue, input: inputValue });
 
   return (
     <main className="app">
@@ -154,9 +167,9 @@ function App() {
                   />
                 </svg>
               </button>
-            </li>
-            <li>
-              <button>
+            </li>*/}
+            <li title="Get last saved">
+              <button onClick={getLast}>
                 <svg
                   width="24"
                   height="24"
@@ -194,9 +207,9 @@ function App() {
                   />
                 </svg>
               </button>
-            </li> */}
+            </li>
             <li title="Save">
-              <button>
+              <button onClick={handleSave}>
                 <svg
                   width="24"
                   height="24"
@@ -311,6 +324,7 @@ function App() {
             lang={language}
             setCodeValue={setCodeValue}
             darkTheme={darkTheme}
+            codeValue={codeValue}
           />
         </div>
         <div className="code-output">
