@@ -101,71 +101,6 @@ function App() {
       <section>
         <nav>
           <ul>
-            {/* <li>
-              <button>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21.25 5.83002V8.90997H2.75V5.83002C2.75 4.12002 4.12999 2.75 5.82999 2.75H18.16C19.87 2.75 21.25 4.13002 21.25 5.83002Z"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M21.25 8.91992V18.1699C21.25 19.8799 19.87 21.2499 18.17 21.2499H5.84C4.13 21.2499 2.76001 19.8699 2.76001 18.1699V8.91992H21.25Z"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M5.83005 6.86005C6.3989 6.86005 6.86005 6.39893 6.86005 5.83008C6.86005 5.26122 6.3989 4.80005 5.83005 4.80005C5.26119 4.80005 4.80005 5.26122 4.80005 5.83008C4.80005 6.39893 5.26119 6.86005 5.83005 6.86005Z"
-                    fill="black"
-                  />
-                  <path
-                    d="M8.94012 12.8401L6.89014 14.8901"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M8.94012 16.9501L6.89014 14.8901"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.1201 12.8401L17.1701 14.8901"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.1201 16.9501L17.1701 14.8901"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M12.6801 11.75L11.3201 17.92"
-                    stroke="#090C02"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </li>*/}
             <li title="Get last saved">
               <button onClick={getLast}>
                 <svg
@@ -316,18 +251,20 @@ function App() {
             </li>
           </ul>
         </nav>
-        <div className="code-input">
-          <CodeEditor
-            className="code-input"
-            lang={language}
-            setCodeValue={setCodeValue}
-            darkTheme={darkTheme}
-            codeValue={codeValue}
-          />
-        </div>
-        <div className="code-output">
-          <InputEditor setInputValue={setInputValue} darkTheme={darkTheme} />
-          <OutputEditor outputValue={outputValue} darkTheme={darkTheme} />
+        <div className="editors">
+          <div className="code-input">
+            <CodeEditor
+              className="code-input"
+              lang={language}
+              setCodeValue={setCodeValue}
+              darkTheme={darkTheme}
+              codeValue={codeValue}
+            />
+          </div>
+          <div className="code-output">
+            <InputEditor setInputValue={setInputValue} darkTheme={darkTheme} />
+            <OutputEditor outputValue={outputValue} darkTheme={darkTheme} />
+          </div>
         </div>
       </section>
     </main>

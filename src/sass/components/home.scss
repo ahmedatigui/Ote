@@ -26,5 +26,66 @@ p {
       padding: 1rem 2rem;
       text-decoration: none;
     }
+
+    &.about {
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5em;
+
+        .card {
+          inline-size: clamp(35vw, 40vw, 45vw);
+          position: relative;
+          padding: 1.5rem 2rem;
+          border: 0.5px solid $gray;
+          border-radius: $border-radius;
+          background-color: #e7f5cb;
+
+          * {
+            text-align: start;
+          }
+
+          h3 {
+            font-size: $font-size-md;
+          }
+
+          p {
+            margin-block-start: 0.6rem;
+            color: $black;
+          }
+
+          a {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet
+@media screen and (max-width: $layout-breakpoint-md) {
+  h1 {
+    font-size: calc($font-size-lg - 2rem);
+  }
+
+  .cards {
+    flex-direction: column;
+
+    .card {
+      inline-size: 80vw !important;
+    }
+  }
+}
+
+// Mobile
+@media screen and (max-width: $layout-breakpoint-sm) {
+  .home {
+    padding-inline: 10vw;
+  }
+  h1 {
+    font-size: calc($font-size-lg - 3rem);
   }
 }

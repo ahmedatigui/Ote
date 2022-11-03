@@ -36,7 +36,7 @@
   }
   section {
     display: grid;
-    grid-template-columns: 4rem 1.5fr 1fr;
+    grid-template-columns: 4rem 1fr;
 
     block-size: min(89vh, 100vh);
 
@@ -56,14 +56,17 @@
       }
     }
 
-    div {
-      // background-color: #fff;
-      // border: 1px solid $black;
-      border-bottom: none;
-      overflow: scroll;
+    .editors {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
 
-      &:first-of-type {
-        margin-inline-end: 0.2rem;
+      div {
+        border-bottom: none;
+        overflow: scroll;
+
+        &:first-of-type {
+          margin-inline-end: 0.2rem;
+        }
       }
     }
   }
@@ -92,4 +95,21 @@ button {
 
 .editor {
   block-size: 100%;
+}
+
+@media screen and (max-width: $layout-breakpoint-sm) {
+  .app::after {
+    content: "Not responsive yet, switch to a bigger screen size.";
+    background-color: $blue;
+    inset: 0;
+    position: fixed;
+    z-index: 9999;
+    color: $white;
+    font-size: $font-size-md;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 700;
+  }
 }
