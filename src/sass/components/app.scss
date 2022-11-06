@@ -88,14 +88,12 @@ button {
 }
 
 .app {
-  overflow: hidden;
-  
   nav {
     background-color: #fff;
   }
   
   .cm-theme{
-    overflow: auto;
+    overflow: auto !important;
   }
 }
 
