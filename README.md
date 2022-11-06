@@ -1,7 +1,5 @@
-# # Ote
+# Ote
 Online code editor
-[Ote]("/public/Screenshot 2022-11-06 at 21-14-35 Vite React.png" Ote editor)
-
 
 ### Tech used
 - ReactJs
