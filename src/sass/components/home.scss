@@ -16,8 +16,10 @@ p {
     align-items: center;
     gap: 2.5rem;
 
+    position: relative;
+
     h1 {
-      max-inline-size: 15ch;
+      max-inline-size: 14ch;
     }
 
     .cta {
@@ -25,6 +27,12 @@ p {
       border-radius: $border-radius;
       padding: 1rem 2rem;
       text-decoration: none;
+    }
+
+    .canvas-container {
+      position: absolute;
+      inset: 0;
+      z-index: -99;
     }
 
     &.about {
@@ -40,6 +48,7 @@ p {
           border: 0.5px solid $gray;
           border-radius: $border-radius;
           background-color: #e7f5cb;
+        
 
           * {
             text-align: start;
