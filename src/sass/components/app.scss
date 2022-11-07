@@ -63,7 +63,7 @@
 
       div {
         border-bottom: none;
-        overflow: scroll;
+        overflow: auto;
 
         &:first-of-type {
           margin-inline-end: 0.2rem;
@@ -91,10 +91,6 @@ button {
 .app {
   nav {
     background-color: #fff;
-  }
-  
-  .editors div{
-    overflow: auto;
   }
 }
 
