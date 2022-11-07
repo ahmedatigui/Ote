@@ -38,7 +38,8 @@
     display: grid;
     grid-template-columns: 4rem 1fr;
 
-    block-size: min(89vh, 100vh);
+    block-size: 88vh;
+    overflow: hidden;
 
     nav {
       padding-block-start: 2rem;
@@ -92,8 +93,8 @@ button {
     background-color: #fff;
   }
   
-  .cm-theme{
-    overflow: auto !important;
+  .editors div{
+    overflow: auto;
   }
 }
 
