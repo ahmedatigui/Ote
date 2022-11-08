@@ -47,8 +47,11 @@ p {
           padding: 1.5rem 2rem;
           border: 0.5px solid $gray;
           border-radius: $border-radius;
-          background-color: #e7f5cb;
-        
+          background-color: #ECF7D5;
+          
+          &:hover{
+            background-color: $green;
+          }
 
           * {
             text-align: start;
