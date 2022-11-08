@@ -5,10 +5,10 @@
 }
 
 h1{
-    font-size: $font-size-lg;
+    font-size: clamp( $font-size-md, 10vw, $font-size-lg);
     line-height: 1.1;
 }
 
-p{
-    font-size: $font-size-base;
+p, a, button, input{
+    font-size: clamp( $font-size-sm, 5vw, $font-size-base);
 }
