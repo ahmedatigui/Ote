@@ -18,6 +18,11 @@ p {
 
     position: relative;
 
+    &.hero{
+      margin-block-start: 3em;
+      margin-block-end: 4em;
+    }
+
     h1 {
       max-inline-size: 14ch;
     }
@@ -92,12 +97,3 @@ p {
   }
 }
 
-// Mobile
-@media screen and (max-width: $layout-breakpoint-sm) {
-  .home {
-    padding-inline: 10vw;
-  }
-  h1 {
-    font-size: calc($font-size-lg - 3rem);
-  }
-}
