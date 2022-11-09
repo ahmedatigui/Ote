@@ -17,6 +17,10 @@ p {
     gap: 2.5rem;
 
     position: relative;
+    
+    &.heropage{
+      min-block-size: 100vh;
+    }
 
     &.hero{
       margin-block-start: 3em;
