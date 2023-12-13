@@ -1,51 +1,59 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Custom Hooks
-import useCompiler from "../hooks/useCompiler";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useCompiler from '../hooks/useCompiler';
+
+// Utils
+import {
+  storeObjectToLocalStorage,
+  getObjectFromLocalStorage,
+} from '../utils/localStorageUtils';
+// import { DataType } from '../utils/types';
 
 // Components
-import CodeEditor from "../components/codeEditor";
-import InputEditor from "../components/inputEditor";
-import OutputEditor from "../components/outputEditor";
+import CodeEditor from '../components/codeEditor';
+import InputEditor from '../components/inputEditor';
+import OutputEditor from '../components/outputEditor';
 
 function App() {
   // Code editor states
-  const [language, setLanguage] = useState("cpp");
-  const [codeValue, setCodeValue] = useState("");
+  const [language, setLanguage] = useState<string>('cpp');
+  const [codeValue, setCodeValue] = useState<string>('');
 
   // Input editor states
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>('');
 
   // Output editor states
-  const [outputValue, setOutputValue] = useState(
-    "Your out output will be here when compiled\n\nNOTE:\nIf your code takes more than 10s to compile, your will get a time out error.\n"
-  );
+  const [outputValue, setOutputValue] = useState<string>('');
 
   // theme state
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState<boolean>(false);
 
   // Custom hooks
-  const [fetchData] = useCompiler([
+  const [fetchData] = useCompiler(
     codeValue,
     language,
     inputValue,
     setOutputValue,
-  ]);
-
-  const [save, getLastSaved] = useLocalStorage();
+  );
 
   // Event functions
   const getLast = () => {
-    const data = getLastSaved();
-    if (data === null) return;
-    setLanguage(data.language);
-    setCodeValue(data.code);
+    const data = getObjectFromLocalStorage();
+    if (data?.language === undefined || data?.code === undefined) return;
+    else {
+      setLanguage(data.language);
+      setCodeValue(data.code!);
+    }
   };
-  const handleChange = (e) => setLanguage(e.target.value);
-  const handleSubmit = () => fetchData();
-  const handleSave = () => save({ language, code: codeValue });
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    setLanguage(e.target.value);
+  const handleSubmit = () => {
+    console.warn({ codeValue, language, inputValue });
+    fetchData();
+  };
+  const handleSave = () => storeObjectToLocalStorage(language, codeValue);
 
   return (
     <main className="app">
@@ -59,14 +67,20 @@ function App() {
               <option title="Cplusplus programming language" value="cpp">
                 C++
               </option>
-              <option title="Python programming language" value="python">
+              <option title="Python programming language" value="py">
                 Python
               </option>
-              <option
-                title="Javascript programming language"
-                value="javascript"
-              >
-                Javascript
+              <option title="Java programming language" value="java">
+                Java
+              </option>
+              <option title="C programming language" value="c">
+                C
+              </option>
+              <option title="Go programming language" value="go">
+                Go
+              </option>
+              <option title="C# programming language" value="cs">
+                C#
               </option>
             </select>
           </li>
@@ -254,7 +268,7 @@ function App() {
         <div className="editors">
           <div className="code-input">
             <CodeEditor
-              className="code-input"
+              // className="code-input"
               lang={language}
               setCodeValue={setCodeValue}
               darkTheme={darkTheme}

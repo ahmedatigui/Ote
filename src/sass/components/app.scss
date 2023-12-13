@@ -1,4 +1,6 @@
 .app {
+  overflow: hidden;
+
   .upper-nav {
     display: grid;
     grid-template-columns: 4rem 1fr;
@@ -60,13 +62,13 @@
     .editors {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
+      column-gap: .2rem;
 
       div {
         border-bottom: none;
-        overflow: auto;
 
-        &:first-of-type {
-          margin-inline-end: 0.2rem;
+        .cm-theme{
+          overflow: scroll;
         }
       }
     }
