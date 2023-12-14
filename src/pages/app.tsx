@@ -9,7 +9,6 @@ import {
   storeObjectToLocalStorage,
   getObjectFromLocalStorage,
 } from '../utils/localStorageUtils';
-// import { DataType } from '../utils/types';
 
 // Components
 import CodeEditor from '../components/codeEditor';
@@ -35,7 +34,7 @@ function App() {
     codeValue,
     language,
     inputValue,
-    setOutputValue,
+    setOutputValue
   );
 
   // Event functions
@@ -50,7 +49,6 @@ function App() {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setLanguage(e.target.value);
   const handleSubmit = () => {
-    console.warn({ codeValue, language, inputValue });
     fetchData();
   };
   const handleSave = () => storeObjectToLocalStorage(language, codeValue);

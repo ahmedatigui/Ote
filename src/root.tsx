@@ -1,12 +1,9 @@
-import { Outlet } from 'react-router-dom'; 
+import { Outlet } from 'react-router-dom';
 
-import './sass/main.scss'
+import './sass/main.scss';
 
 function Root() {
-
-  return(
-    <Outlet/>
-  );
+  return <Outlet />;
 }
 
-export default Root
+export default Root;

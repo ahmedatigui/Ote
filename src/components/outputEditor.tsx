@@ -13,7 +13,7 @@ const OutputEditor = ({
   return (
     <CodeMirror
       value={outputValue}
-      placeholder={"Your out output will be here"}
+      placeholder={'Your out output will be here'}
       height="60vh"
       theme={darkTheme ? solarizedDark : solarizedLight}
       readOnly={true}

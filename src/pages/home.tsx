@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -10,7 +10,9 @@ function Home() {
         <section className="hero">
           <h1>Modern online code editor.</h1>
           <p>
-            This is a web-based online code editor, with support to three programming languages so far Cplusplus, Python, Javascript, and more to come soon.
+            This is a web-based online code editor, with support to three
+            programming languages so far Cplusplus, Python, Javascript, and more
+            to come soon.
           </p>
           <Link to="/app" className="cta">
             Code
@@ -22,7 +24,9 @@ function Home() {
           <div className="card">
             <h3>Design</h3>
             <p>
-              The current design is just the start of a series of improvements for Ote. Check the whole design roadmap by clicking the icon on the corner. 
+              The current design is just the start of a series of improvements
+              for Ote. Check the whole design roadmap by clicking the icon on
+              the corner.
             </p>
             <a
               href="https://www.figma.com/file/CEfXVHx3JnIfVRh5QWY6Jp/Online-text-editor-(Ote)?node-id=0%3A1"
@@ -64,7 +68,9 @@ function Home() {
           <div className="card">
             <h3>Development</h3>
             <p>
-              There were lots of decisions and creative solutions behind the development of Ote. Check the github repo through clicking the icon on the corner.
+              There were lots of decisions and creative solutions behind the
+              development of Ote. Check the github repo through clicking the
+              icon on the corner.
             </p>
             <a href="https://github.com/ahmedatigui/ote" target="_blank">
               <svg

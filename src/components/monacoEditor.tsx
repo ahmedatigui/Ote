@@ -1,4 +1,4 @@
-import MonacoEditor from "@uiw/react-monacoeditor";
+import MonacoEditor from '@uiw/react-monacoeditor';
 
 const MoEditor = ({ lang }) => {
   console.log(lang);
@@ -7,7 +7,7 @@ const MoEditor = ({ lang }) => {
       language={lang}
       defaultValue="Code Goes Here"
       options={{
-        theme: "vs-light",
+        theme: 'vs-light',
       }}
     />
   );
