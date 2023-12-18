@@ -47,7 +47,8 @@ const CodeEditor = ({
           setInitialValue('// Your CSharp code here!');
           break;
         case 'go':
-          setProLang({ language: [StreamLanguage.define(go)], value: lang });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setProLang({ language: [StreamLanguage.define(go) as any], value: lang });
           setInitialValue('// Your GoLang code here!');
           break;
         default:
