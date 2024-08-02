@@ -68,9 +68,6 @@ function App() {
               <option title="Python programming language" value="py">
                 Python
               </option>
-              <option title="Java programming language" value="java">
-                Java
-              </option>
               <option title="C programming language" value="c">
                 C
               </option>
