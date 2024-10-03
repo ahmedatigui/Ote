@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Utils
 import { preValueType } from '../utils/types';
 
-const SUBMISSION_URL = 'http://localhost:3000/compile';
+const SUBMISSION_URL = 'https://oteapi.ahmedatigui.com/compile';
 
 const useCompiler = (
   codeValue: string,
