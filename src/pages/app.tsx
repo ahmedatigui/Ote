@@ -74,9 +74,6 @@ function App() {
               <option title="Go programming language" value="go">
                 Go
               </option>
-              <option title="C# programming language" value="cs">
-                C#
-              </option>
             </select>
           </li>
           <li onClick={handleSubmit}>
